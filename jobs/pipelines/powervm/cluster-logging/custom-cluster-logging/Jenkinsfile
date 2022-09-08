@@ -24,7 +24,7 @@ properties([
             ]
         ],
         [$class: 'CascadeChoiceParameter', 
-            choiceType: 'PT_CHECKBOX', 
+            choiceType: 'PT_MULTI_SELECT', 
             description: 'Select the Cluster Versions from the Dropdown List',
             name: 'OCPVersion', 
             referencedParameters: 'LoggingVersion', 
