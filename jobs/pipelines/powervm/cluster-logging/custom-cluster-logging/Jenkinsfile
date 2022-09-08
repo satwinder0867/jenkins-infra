@@ -94,8 +94,8 @@ pipeline {
     }
         stages {
             stage('Parameters'){
-                
+            echo "====++++something++++===="    
                     
-                }
             }
+        }
 }   
