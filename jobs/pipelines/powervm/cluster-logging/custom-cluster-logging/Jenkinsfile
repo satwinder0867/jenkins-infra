@@ -19,7 +19,7 @@ properties([
                     classpath: [], 
                     sandbox: false, 
                     script: 
-                        'return['Cluster_Logging_5.2','Cluster Logging 5.3','Cluster Logging 5.4','Cluster Logging 5.5','Cluster Logging 5.6']'
+                        'return['Cluster_Logging_5.2','Cluster_Logging_5.3','Cluster_Logging_5.4','Cluster_Logging_5.5','Cluster_Logging_5.6']'
                 ]
             ]
         ],
