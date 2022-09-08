@@ -33,7 +33,7 @@ properties([
                 fallbackScript: [
                         classpath: [], 
                         sandbox: false, 
-                        script: "return['Could not get Cluster Logging version from LoggingVersion Param']"
+                        script: 'return[\'Could not get Cluster Logging version from LoggingVersion Param\']'
                         ], 
                 script: [
                         classpath: [], 
