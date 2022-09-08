@@ -92,9 +92,17 @@ pipeline {
             label 'jump-vpc-x86_64'
         }
     }
+
+    parameters {
+        string(defaultValue: '', description: 'Build(quay image or build number)', name: 'Build')
+        string(defaultValue: '0', description: 'Enter time(in Minutes) to retain the cluster', name: 'KeepFor')
+        booleanParam(defaultValue: false, name: 'Rune2e', description: 'Select if you want to run e2e tests. E2e runs after cluster upgrade')
+    }
         stages {
-            stage('Parameters'){
-            echo "====++++something++++===="    
+            stage('Clone ansible extra'){
+                steps {
+                    cloneRepo("git@github.ibm.com:redstack-power/ocp4_ansible_extras.git", "ansible_extra")
+                }
                     
             }
         }
