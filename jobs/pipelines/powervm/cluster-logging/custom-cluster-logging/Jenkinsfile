@@ -39,19 +39,19 @@ properties([
                         classpath: [], 
                         sandbox: false, 
                         script: '''
-                        if (Env.equals("Cluster_Logging_5.2")){
+                        if (LoggingVersion.equals("Cluster_Logging_5.2")){
                             return["OCP_4.8", "OCP_4.9", "OCP_4.10", "OCP_4.11"]
                         }
-                        else if(Env.equals("Cluster_Logging_5.3")){
+                        else if(LoggingVersion.equals("Cluster_Logging_5.3")){
                             return["OCP_4.8", "OCP_4.9", "OCP_4.10", "OCP_4.11"]
                         }
-                        else if(Env.equals("Cluster_Logging_5.4")){
+                        else if(LoggingVersion.equals("Cluster_Logging_5.4")){
                             return["OCP_4.8", "OCP_4.9", "OCP_4.10", "OCP_4.11"]
                         }
-                        else if(Env.equals("Cluster_Logging_5.5")){
+                        else if(LoggingVersion.equals("Cluster_Logging_5.5")){
                             return["OCP_4.8", "OCP_4.9", "OCP_4.10", "OCP_4.11"]
                         }
-                        else if(Env.equals("Cluster_Logging_5.6")){
+                        else if(LoggingVersion.equals("Cluster_Logging_5.6")){
                             return["OCP_4.8", "OCP_4.9", "OCP_4.10", "OCP_4.11"]
                         }
                         '''
@@ -62,19 +62,19 @@ properties([
             choiceType: 'ET_ORDERED_LIST', 
             description: 'Select the  AMI based on the following infomration', 
             name: 'Image Information', 
-            referencedParameters: 'Env', 
+            referencedParameters: 'LoggingVersion', 
             script: 
                 [$class: 'GroovyScript', 
                 script: 'return["Could not get AMi Information"]', 
                 script: [
                     script: '''
-                            if (Env.equals("dev")){
+                            if (LoggingVersion.equals("dev")){
                                 return["ami-sd2345sd:  AMI with Java", "ami-asdf245sdf: AMI with Python", "ami-asdf3245sd: AMI with Groovy"]
                             }
-                            else if(Env.equals("stage")){
+                            else if(LoggingVersion.equals("stage")){
                                 return["ami-sd34sdf:  AMI with Java", "ami-sdf345sdc: AMI with Python", "ami-sdf34sdf: AMI with Groovy"]
                             }
-                            else if(Env.equals("prod")){
+                            else if(LoggingVersion.equals("prod")){
                                 return["ami-sdf34sdf:  AMI with Java", "ami-sdf34ds: AMI with Python", "ami-sdf3sf3: AMI with Groovy"]
                             }
                             '''
