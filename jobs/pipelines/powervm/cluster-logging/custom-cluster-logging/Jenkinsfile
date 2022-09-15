@@ -1,4 +1,4 @@
-@Library('jenkins-upstream-library') _
+@Library('cluster-logging-library') _
 properties([
     parameters([
         [$class: 'ChoiceParameter', 
@@ -57,30 +57,8 @@ properties([
                         '''
                     ] 
             ]
-        ],
-        [$class: 'DynamicReferenceParameter', 
-            choiceType: 'ET_ORDERED_LIST', 
-            description: 'Select the  AMI based on the following infomration', 
-            name: 'Image Information', 
-            referencedParameters: 'LoggingVersion', 
-            script: 
-                [$class: 'GroovyScript', 
-                script: 'return["Could not get AMi Information"]', 
-                script: [
-                    script: '''
-                            if (LoggingVersion.equals("dev")){
-                                return["ami-sd2345sd:  AMI with Java", "ami-asdf245sdf: AMI with Python", "ami-asdf3245sd: AMI with Groovy"]
-                            }
-                            else if(LoggingVersion.equals("stage")){
-                                return["ami-sd34sdf:  AMI with Java", "ami-sdf345sdc: AMI with Python", "ami-sdf34sdf: AMI with Groovy"]
-                            }
-                            else if(LoggingVersion.equals("prod")){
-                                return["ami-sdf34sdf:  AMI with Java", "ami-sdf34ds: AMI with Python", "ami-sdf3sf3: AMI with Groovy"]
-                            }
-                            '''
-                        ]
-                ]
-            ]
+        ]
+            
         ])
     ])
 
@@ -94,16 +72,40 @@ pipeline {
     }
 
     parameters {
-        string(defaultValue: '', description: 'Build(quay image or build number)', name: 'Build')
-        string(defaultValue: '0', description: 'Enter time(in Minutes) to retain the cluster', name: 'KeepFor')
-        booleanParam(defaultValue: false, name: 'Rune2e', description: 'Select if you want to run e2e tests. E2e runs after cluster upgrade')
+        string(defaultValue: '', description: 'IP(Input the IP of cluster)', name: 'OCP_IP')
+    }
+
+    environment {
+        OCP_Cluster_IP = "${params.OCP_IP}"
+        LoggingVersion = "${params.LoggingVersion}"
+        
     }
         stages {
+            
             stage('Clone ansible extra'){
                 steps {
                     cloneRepo("git@github.ibm.com:redstack-power/ocp4_ansible_extras.git", "ansible_extra")
+                
                 }
+            }
+
+            stage('Check cluster connection')
+                script {
+                    ansiColor('xterm') {
+                        echo ""
+                    }
+                    try
+                    {
+                        clusterLoggingGetKey()
+                        
+                        sh '''
+                            echo "${OCP_Cluster_IP}"
+                            echo "${LoggingVersion}"
+                            ssh -o 'StrictHostKeyChecking no' -i ${WORKSPACE}/deploy/id_rsa root@9.114.97.53
+                        '''
+                ssh -o 'StrictHostKeyChecking no' -i ${WORKSPACE}/deploy/id_rsa root@${BASTION_IP}
                     
             }
         }
 }   
+}
