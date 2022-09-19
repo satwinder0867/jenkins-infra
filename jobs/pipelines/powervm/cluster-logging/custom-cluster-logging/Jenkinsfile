@@ -101,11 +101,15 @@ pipeline {
                         sh '''
                             echo "${OCP_Cluster_IP}"
                             echo "${LoggingVersion}"
-                            ssh -o 'StrictHostKeyChecking no' -i ${WORKSPACE}/deploy/id_rsa root@9.114.97.53
+                            ssh -o 'StrictHostKeyChecking no' -i ${WORKSPACE}/deploy/id_rsa root@9.114.97.53 "mkdir Aaruni"
                         '''
-                ssh -o 'StrictHostKeyChecking no' -i ${WORKSPACE}/deploy/id_rsa root@${BASTION_IP}
-                    
-            }
+                                        
+                    }
+                    catch (err) {
+                        echo 'Error ! Connection Failed!'
+                        env.FAILED_STAGE=env.STAGE_NAME
+                        throw err
+                    }
         }
 }   
 }
