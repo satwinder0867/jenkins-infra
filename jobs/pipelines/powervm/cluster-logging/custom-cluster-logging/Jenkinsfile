@@ -89,7 +89,7 @@ pipeline {
                 }
             }
 
-            stage('Check cluster connection')
+            stage('Check cluster connection'){
                 script {
                     ansiColor('xterm') {
                         echo ""
@@ -110,6 +110,7 @@ pipeline {
                         env.FAILED_STAGE=env.STAGE_NAME
                         throw err
                     }
-        }
+                }
+                }
 }   
 }
