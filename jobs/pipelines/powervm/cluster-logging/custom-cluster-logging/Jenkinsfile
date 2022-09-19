@@ -90,27 +90,29 @@ pipeline {
             }
 
             stage('Check cluster connection'){
-                script {
-                    ansiColor('xterm') {
-                        echo ""
-                    }
-                    try
-                    {
-                        clusterLoggingGetKey()
-                        
-                        sh '''
-                            echo "${OCP_Cluster_IP}"
-                            echo "${LoggingVersion}"
-                            ssh -o 'StrictHostKeyChecking no' -i ${WORKSPACE}/deploy/id_rsa root@9.114.97.53 "mkdir Aaruni"
-                        '''
-                                        
-                    }
-                    catch (err) {
-                        echo 'Error ! Connection Failed!'
-                        env.FAILED_STAGE=env.STAGE_NAME
-                        throw err
+                steps {
+                    script {
+                        ansiColor('xterm') {
+                            echo ""
+                        }
+                        try
+                        {
+                            clusterLoggingGetKey()
+                            
+                            sh '''
+                                echo "${OCP_Cluster_IP}"
+                                echo "${LoggingVersion}"
+                                ssh -o 'StrictHostKeyChecking no' -i ${WORKSPACE}/deploy/id_rsa root@9.114.97.53 "mkdir Aaruni"
+                            '''
+                                            
+                        }
+                        catch (err) {
+                            echo 'Error ! Connection Failed!'
+                            env.FAILED_STAGE=env.STAGE_NAME
+                            throw err
+                        }
                     }
                 }
-                }
+            }
 }   
 }
