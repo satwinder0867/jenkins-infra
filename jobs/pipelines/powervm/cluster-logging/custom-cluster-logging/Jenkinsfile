@@ -129,7 +129,7 @@ pipeline {
             stage('Cluster Logging Deployment'){
                 steps {
                     clusterLoggingGetKey()
-                    CLFCLEANUP = true
+                    CLFCLEANUP = "true"
                     clusterLoggingVars()
                 }
             }
