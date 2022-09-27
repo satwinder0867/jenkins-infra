@@ -57,28 +57,6 @@ properties([
                         '''
                     ] 
             ]
-        ],
-        [$class: 'ChoiceParameter', 
-            choiceType: 'PT_SINGLE_SELECT', 
-            description: 'Select the Log Forwarding type', 
-            filterLength: 1, 
-            filterable: false, 
-            name: 'LogCollectorType', 
-            script: [
-                $class: 'GroovyScript', 
-                fallbackScript: [
-                    classpath: [], 
-                    sandbox: false, 
-                    script: 
-                        'return[\'Could not get The Log Collector type\']'
-                ], 
-                script: [
-                    classpath: [], 
-                    sandbox: false, 
-                    script: 
-                        'return["flentd:selected","vector"]'
-                ]
-            ]
         ]
             
         ])
@@ -98,7 +76,7 @@ pipeline {
         string(defaultValue: '', description: 'Elasticsearch Index Info', name: 'Elasticsearch_index')
         string(defaultValue: '', description: 'Cluster Logging Index Info', name: 'ClusterLogging_index')
         string(defaultValue: '', description: 'Loki Operator Index Info', name: 'LokiOperator_index')
-
+        choice choices: ['return["fluentd:selected","vector"]'], description: 'Select the Cluster Logging forwarder type', name: 'LogCollectorType'
 
     }
 
