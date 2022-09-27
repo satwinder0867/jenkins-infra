@@ -76,7 +76,7 @@ pipeline {
         string(defaultValue: '', description: 'Elasticsearch Index Info', name: 'Elasticsearch_index')
         string(defaultValue: '', description: 'Cluster Logging Index Info', name: 'ClusterLogging_index')
         string(defaultValue: '', description: 'Loki Operator Index Info', name: 'LokiOperator_index')
-        choice choices: ['return["fluentd:selected","vector"]'], description: 'Select the Cluster Logging forwarder type', name: 'LogCollectorType'
+        choice(choices: ['fluentd', 'vector'], description: 'Select the Cluster Logging forwarder type', name: 'LogCollectorType')
 
     }
 
