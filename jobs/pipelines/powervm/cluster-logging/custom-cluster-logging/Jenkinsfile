@@ -19,7 +19,7 @@ properties([
                     classpath: [], 
                     sandbox: false, 
                     script: 
-                        'return["Cluster_Logging_5.2:selected","Cluster_Logging_5.3","Cluster_Logging_5.4","Cluster_Logging_5.5","Cluster_Logging_5.6"]'
+                        'return["5.2:selected","5.3","5.4","5.5","5.6"]'
                 ]
             ]
         ],
@@ -39,20 +39,20 @@ properties([
                         classpath: [], 
                         sandbox: false, 
                         script: '''
-                        if (LoggingVersion.equals("Cluster_Logging_5.2")){
+                        if (LoggingVersion.equals("5.2")){
+                            return["OCP_4.8", "OCP_4.9", "OCP_4.10"]
+                        }
+                        else if(LoggingVersion.equals("5.3")){
+                            return["OCP_4.8", "OCP_4.9", "OCP_4.10"]
+                        }
+                        else if(LoggingVersion.equals("5.4")){
                             return["OCP_4.8", "OCP_4.9", "OCP_4.10", "OCP_4.11"]
                         }
-                        else if(LoggingVersion.equals("Cluster_Logging_5.3")){
-                            return["OCP_4.8", "OCP_4.9", "OCP_4.10", "OCP_4.11"]
+                        else if(LoggingVersion.equals("5.5")){
+                            return["OCP_4.9", "OCP_4.10", "OCP_4.11"]
                         }
-                        else if(LoggingVersion.equals("Cluster_Logging_5.4")){
-                            return["OCP_4.8", "OCP_4.9", "OCP_4.10", "OCP_4.11"]
-                        }
-                        else if(LoggingVersion.equals("Cluster_Logging_5.5")){
-                            return["OCP_4.8", "OCP_4.9", "OCP_4.10", "OCP_4.11"]
-                        }
-                        else if(LoggingVersion.equals("Cluster_Logging_5.6")){
-                            return["OCP_4.8", "OCP_4.9", "OCP_4.10", "OCP_4.11"]
+                        else if(LoggingVersion.equals("5.6")){
+                            return["OCP_4.9", "OCP_4.10", "OCP_4.11"]
                         }
                         '''
                     ] 
