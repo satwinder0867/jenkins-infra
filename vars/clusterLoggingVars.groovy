@@ -3,12 +3,9 @@ def call(){
         sh 'cp $FILE $WORKSPACE/deploy/ocp_cluster_logging_vars.yml'
         
         //sh 'yes | cp -r $FILE /root/clusterLoggingVars.yaml'
-   
-    }
     
-}
+    }
 
-def call(){
     script {
         ansiColor('xterm') {
             echo ""
