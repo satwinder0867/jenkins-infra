@@ -39,7 +39,7 @@ properties([
                         classpath: [], 
                         sandbox: false, 
                         script: 
-                            ''' if(LoggingVersion.equals("5.3")){
+                            retrun ''' if(LoggingVersion.equals("5.3")){
                                     return["OCP_4.8", "OCP_4.9", "OCP_4.10"]
                                 }
                                 else if(LoggingVersion.equals("5.4")){
