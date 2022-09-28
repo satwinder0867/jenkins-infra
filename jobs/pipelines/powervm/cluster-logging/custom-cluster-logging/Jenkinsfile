@@ -24,7 +24,7 @@ properties([
             ]
         ],
         [$class: 'CascadeChoiceParameter', 
-            choiceType: 'PT_MULTI_SELECT', 
+            choiceType: 'PT_SINGLE_SELECT', 
             description: 'Select the Cluster Versions from the Dropdown List',
             name: 'OCPVersion', 
             referencedParameters: 'LoggingVersion', 
@@ -38,8 +38,8 @@ properties([
                 script: [
                         classpath: [], 
                         sandbox: false, 
-                        script: 
-                            retrun ''' if(LoggingVersion.equals("5.3")){
+                        script: ''' 
+                                if(LoggingVersion.equals("5.3")){
                                     return["OCP_4.8", "OCP_4.9", "OCP_4.10"]
                                 }
                                 else if(LoggingVersion.equals("5.4")){
