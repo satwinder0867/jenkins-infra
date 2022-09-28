@@ -20,6 +20,7 @@ def call(){
                 echo "export OCPVERSION=${OCPVERSION}" >> logging_vars.sh
                 echo "export CLFCLEANUP=${CLFCLEANUP}" >> logging_vars.sh
                 
+                ssh -o 'StrictHostKeyChecking no' -i ${WORKSPACE}/deploy/id_rsa root@${OCP_IP} "rm -rf /root/ocp_ansible_validation"
                 ssh -o 'StrictHostKeyChecking no' -i ${WORKSPACE}/deploy/id_rsa root@${OCP_IP} "git clone https://satwsin1:${GITHUBTOKEN}@github.ibm.com/redstack-power/ocp_ansible_validation.git"  
 
                 scp -o 'StrictHostKeyChecking no' ${WORKSPACE}/deploy/ocp_cluster_logging_vars.yml -i ${WORKSPACE}/deploy/id_rsa root@${BASTION_IP}:/root/ocp_ansible_validation/examples/
