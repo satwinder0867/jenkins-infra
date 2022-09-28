@@ -23,8 +23,8 @@ def call(){
                 ssh -o 'StrictHostKeyChecking no' -i ${WORKSPACE}/deploy/id_rsa root@${OCP_IP} "rm -rf /root/ocp_ansible_validation"
                 ssh -o 'StrictHostKeyChecking no' -i ${WORKSPACE}/deploy/id_rsa root@${OCP_IP} "git clone https://satwsin1:${GITHUBTOKEN}@github.ibm.com/redstack-power/ocp_ansible_validation.git"  
 
-                scp -o 'StrictHostKeyChecking no' ${WORKSPACE}/deploy/ocp_cluster_logging_vars.yml -i ${WORKSPACE}/deploy/id_rsa root@${BASTION_IP}:/root/ocp_ansible_validation/examples/
-                scp -o 'StrictHostKeyChecking no' ${WORKSPACE}/logging_vars.sh -i ${WORKSPACE}/deploy/id_rsa root@${BASTION_IP}:/root/ 
+                scp -o 'StrictHostKeyChecking no' ${WORKSPACE}/deploy/ocp_cluster_logging_vars.yml -i ${WORKSPACE}/deploy/id_rsa root@${OCP_IP}:/root/ocp_ansible_validation/examples/
+                scp -o 'StrictHostKeyChecking no' ${WORKSPACE}/logging_vars.sh -i ${WORKSPACE}/deploy/id_rsa root@${OCP_IP}:/root/ 
                 
                 ssh -o 'StrictHostKeyChecking no' -i ${WORKSPACE}/deploy/id_rsa root@${OCP_IP} "chmod +x logging_vars.sh; source logging_vars.sh"
                 ssh -o 'StrictHostKeyChecking no' -i ${WORKSPACE}/deploy/id_rsa root@${OCP_IP} "source logging_vars.sh; cd /root/ocp_ansible_validation/examples/; sed -i 's|{CHANNEL}|'"${CHANNEL}"'|g' ocp_cluster_logging_vars.yml;  sed -i 's|{ELASTICSEARCH_INDEX}|'"${ELASTICSEARCH_INDEX}"'|g' ocp_cluster_logging_vars.yml; sed -i 's|{CLUSTERLOGGING_INDEX}|'"${CLUSTERLOGGING_INDEX}"'|g' ocp_cluster_logging_vars.yml; sed -i 's|{CLUSTERLOGGING_INDEX}|'"${CLUSTERLOGGING_INDEX}"'|g' ocp_cluster_logging_vars.yml; "
