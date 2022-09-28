@@ -19,7 +19,7 @@ properties([
                     classpath: [], 
                     sandbox: false, 
                     script: 
-                        'return["CL_5.3:selected","CL_5.4","CL_5.5","CL_5.6"]'
+                        'return["5.3:selected","5.4","5.5","5.6"]'
                 ]
             ]
         ],
@@ -39,16 +39,16 @@ properties([
                         classpath: [], 
                         sandbox: false, 
                         script: '''
-                            if(LoggingVersion.equals("CL_5.3")){
+                            if(LoggingVersion.equals("5.3")){
                                 return["OCP_4.8", "OCP_4.9", "OCP_4.10"]
                             }
-                            else if(LoggingVersion.equals("CL_5.4")){
+                            else if(LoggingVersion.equals("5.4")){
                                 return["OCP_4.8", "OCP_4.9", "OCP_4.10", "OCP_4.11"]
                             }
-                            else if(LoggingVersion.equals("CL_5.5")){
+                            else if(LoggingVersion.equals("5.5")){
                                 return["OCP_4.9", "OCP_4.10", "OCP_4.11"]
                             }
-                            else if(LoggingVersion.equals("CL_5.6")){
+                            else if(LoggingVersion.equals("5.6")){
                                 return["OCP_4.9", "OCP_4.10", "OCP_4.11"]
                             }
                         '''
