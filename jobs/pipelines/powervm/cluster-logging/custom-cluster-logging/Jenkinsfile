@@ -96,6 +96,8 @@ pipeline {
             
             stage('Clean Up'){
                 steps {
+                    echo "Logging Version ${LOGGINGVERSION}"
+                    echo "deploying version ${params.LoggingVersion}"
                     clusterLoggingGetKey()
                     clusterLoggingInventory()
                     clusterLoggingVars()
