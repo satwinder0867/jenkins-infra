@@ -101,6 +101,7 @@ pipeline {
                     clusterLoggingGetKey()
                     clusterLoggingInventory()
                     clusterLoggingVars()
+                    clusterLoggingExportVars()
                 }
             }
 
@@ -108,10 +109,11 @@ pipeline {
                 steps {
                     clusterLoggingGetKey()
                     clusterLoggingInventory()
+                    clusterLoggingVars()
                     script {
                         CLFCLEANUP = "true"
                     }
-                    clusterLoggingVars()
+                    clusterLoggingExportVars()
                 }
             }
 }   
