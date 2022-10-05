@@ -22,4 +22,5 @@ sed -i 's|{CLFCLEANUP}|'$CLFCLEANUP'|g' ocp_cluster_logging_vars.yml
 sed -i 's|{OCPVERSION}|'$OCPVERSION'|g' ocp_cluster_logging_vars.yml
 
 pushd ../
+echo $CLFCLEANUP
 ansible-playbook -i cl_inventory -e @examples/ocp_cluster_logging_vars.yml playbooks/main.yml | tee /root/cluster_logging_output.txt
