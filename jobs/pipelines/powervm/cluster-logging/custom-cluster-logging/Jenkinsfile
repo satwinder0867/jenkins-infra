@@ -100,6 +100,9 @@ pipeline {
                     clusterLoggingGetKey()
                     clusterLoggingInventory()
                     clusterLoggingVars()
+                    script {
+                        env.CLFCLEANUP = true
+                    }
                     clusterLoggingExportVars()
                 }
             }
@@ -110,7 +113,7 @@ pipeline {
                     clusterLoggingInventory()
                     clusterLoggingVars()
                     script {
-                        CLFCLEANUP = false
+                        env.CLFCLEANUP = false
                     }
                     clusterLoggingExportVars()
                 }
