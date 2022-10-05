@@ -21,8 +21,10 @@ popd
 
 pushd ocp_ansible_validation/examples
 
-sed -i 's|{CHANNEL}|"'$CHANNEL'"|g' ocp_cluster_logging_vars.yml
-sed -i 's|{ELASTICSEARCH_INDEX}|"'$ELASTICSEARCH_INDEX'"|g' ocp_cluster_logging_vars.yml
+echo $CHANNEL
+echo $ELASTICSEARCH_INDEX
+sed -i 's|{CHANNEL}|$CHANNEL|g' ocp_cluster_logging_vars.yml
+sed -i 's|{ELASTICSEARCH_INDEX}|$ELASTICSEARCH_INDEX|g' ocp_cluster_logging_vars.yml
 sed -i 's|{CLUSTERLOGGING_INDEX}|"'$CLUSTERLOGGING_INDEX'"|g' ocp_cluster_logging_vars.yml
 sed -i 's|{CLUSTERLOGGING_INDEX}|"'$CLUSTERLOGGING_INDEX'"|g' ocp_cluster_logging_vars.yml
 sed -i 's|{LOGCOLLECTORTYPE}|"'$LOGCOLLECTORTYPE'"|g' ocp_cluster_logging_vars.yml
