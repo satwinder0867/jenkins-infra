@@ -1,11 +1,11 @@
 #!/bin/bash
 
-echo "export CHANNEL=${LoggingVersion}" >  logging_vars.sh
-echo "export CLUSTERLOGGING_INDEX=${ClusterLogging_index}" >> logging_vars.sh
-echo "export ELASTICSEARCH_INDEX=${Elasticsearch_index}" >> logging_vars.sh
-echo "export LOKIOPERATOR_INDEX=${LokiOperator_index}" >> logging_vars.sh
-echo "export LOGCOLLECTORTYPE=${LogCollectorType}" >> logging_vars.sh
-echo "export OCPVERSION=${OCPVersion}" >> logging_vars.sh
+echo "export CHANNEL=${LOGGINGVERSION}" >  logging_vars.sh
+echo "export CLUSTERLOGGING_INDEX=${CLUSTERLOGGING_INDEX}" >> logging_vars.sh
+echo "export ELASTICSEARCH_INDEX=${ELASTICSEARCH_INDEX}" >> logging_vars.sh
+echo "export LOKIOPERATOR_INDEX=${LOKIOPERATOR_INDEX}" >> logging_vars.sh
+echo "export LOGCOLLECTORTYPE=${LOGCOLLECTORTYPE}" >> logging_vars.sh
+echo "export OCPVERSION=${OCPVERSION}" >> logging_vars.sh
 echo "export CLFCLEANUP=${CLFCLEANUP}" >> logging_vars.sh
 
 chmod +x logging_vars.sh
