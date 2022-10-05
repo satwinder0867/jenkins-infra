@@ -112,7 +112,7 @@ pipeline {
                     clusterLoggingInventory()
                     clusterLoggingVars()
                     script {
-                        CLFCLEANUP = "true"
+                        env.CLFCLEANUP = "true"
                     }
                     clusterLoggingExportVars()
                 }
