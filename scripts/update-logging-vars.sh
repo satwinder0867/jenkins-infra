@@ -1,12 +1,7 @@
 #!/bin/bash
 
-export CHANNEL=${LoggingVersion} 
-export CLUSTERLOGGING_INDEX=${ClusterLogging_index} 
-export ELASTICSEARCH_INDEX=${Elasticsearch_index}
-export LOKIOPERATOR_INDEX=${LokiOperator_index}
-export LOGCOLLECTORTYPE=${LogCollectorType}
-export OCPVERSION=${OCPVersion}
-export CLFCLEANUP=${CLFCLEANUP}
+chmod 755 logging_vars.sh
+source logging_vars.sh
 
 pushd ocp_ansible_validation
 
