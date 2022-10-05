@@ -7,7 +7,7 @@ def call(){
             sh '''
                 cd ${WORKSPACE}/deploy               
                 ssh -o 'StrictHostKeyChecking no' -i id_rsa root@${OCP_IP} "rm -rf /root/ocp_ansible_validation; git clone https://satwsin1:${GITHUBTOKEN}@github.ibm.com/redstack-power/ocp_ansible_validation.git"
-                scp -r -o 'StrictHostKeyChecking no' -i id_rsa deploy/ocp_cluster_logging_vars.yml root@${OCP_IP}:/root/ocp_ansible_validation/examples/
+                scp -r -o 'StrictHostKeyChecking no' -i id_rsa ${WORKSPACE}/deploy/ocp_cluster_logging_vars.yml root@${OCP_IP}:/root/ocp_ansible_validation/examples/
                 scp -r -o 'StrictHostKeyChecking no' -i id_rsa logging_vars.sh root@${OCP_IP}:/root/ 
                 scp -o 'StrictHostKeyChecking no' -i id_rsa deploy/cl_inventory root@${OCP_IP}:/root/ocp_ansible_validation/
                 scp -r -o 'StrictHostKeyChecking no' -i id_rsa ${WORKSPACE}/scripts/update-logging-var.sh root@${OCP_IP}:/root/           
