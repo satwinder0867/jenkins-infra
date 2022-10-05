@@ -18,7 +18,7 @@ sed -i 's|{ELASTICSEARCH_INDEX}|'$ELASTICSEARCH_INDEX'|g' ocp_cluster_logging_va
 sed -i 's|{CLUSTERLOGGING_INDEX}|'$CLUSTERLOGGING_INDEX'|g' ocp_cluster_logging_vars.yml
 sed -i 's|{CLUSTERLOGGING_INDEX}|'$CLUSTERLOGGING_INDEX'|g' ocp_cluster_logging_vars.yml
 sed -i 's|{LOGCOLLECTORTYPE}|'$LOGCOLLECTORTYPE'|g' ocp_cluster_logging_vars.yml
-sed -i 's|{CLFCLEANUP}|'${env.CLFCLEANUP}'|g' ocp_cluster_logging_vars.yml
+sed -i 's|{CLFCLEANUP}|'$CLFCLEANUP'|g' ocp_cluster_logging_vars.yml
 sed -i 's|{OCPVERSION}|'$OCPVERSION'|g' ocp_cluster_logging_vars.yml
 
 pushd ../

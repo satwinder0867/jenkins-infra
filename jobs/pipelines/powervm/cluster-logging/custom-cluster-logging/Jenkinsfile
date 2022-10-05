@@ -91,7 +91,7 @@ pipeline {
         LOGCOLLECTORTYPE = "${params.LogCollectorType}"
         //OCPVERSION= "OCP_4.8"
         OCPVERSION = "${params.OCPVersion}"
-        CLFCLEANUP = "false"
+        CLFCLEANUP = "true"
         GITHUBTOKEN = credentials('SATWIN_GITHUB_TOKEN')
     }
         stages {
@@ -112,7 +112,7 @@ pipeline {
                     clusterLoggingInventory()
                     clusterLoggingVars()
                     script {
-                        env.CLFCLEANUP = "true"
+                        CLFCLEANUP = "false"
                     }
                     clusterLoggingExportVars()
                 }
