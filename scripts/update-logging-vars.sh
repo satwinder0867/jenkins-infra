@@ -18,9 +18,9 @@ sed -i 's|{ELASTICSEARCH_INDEX}|'$ELASTICSEARCH_INDEX'|g' ocp_cluster_logging_va
 sed -i 's|{CLUSTERLOGGING_INDEX}|'$CLUSTERLOGGING_INDEX'|g' ocp_cluster_logging_vars.yml
 sed -i 's|{CLUSTERLOGGING_INDEX}|'$CLUSTERLOGGING_INDEX'|g' ocp_cluster_logging_vars.yml
 sed -i 's|{LOGCOLLECTORTYPE}|'$LOGCOLLECTORTYPE'|g' ocp_cluster_logging_vars.yml
-sed -i 's|{CLFCLEANUP}|'$CLFCLEANUP'|g' ocp_cluster_logging_vars.yml
+sed -i 's|{CLFCLEANUP}|'$(CLFCLEANUP)'|g' ocp_cluster_logging_vars.yml
 sed -i 's|{OCPVERSION}|'$OCPVERSION'|g' ocp_cluster_logging_vars.yml
 
 pushd ../
-echo "CLF CLEANUP ${CLFCLEANUP}"
-ansible-playbook -i cl_inventory -e @examples/ocp_cluster_logging_vars.yml playbooks/main.yml | tee /root/cluster_logging_output.txt
+echo "CLF CLEANUP $(CLFCLEANUP)"
+ansible-playbook -i cl_inventory -e @examples/ocp_cluster_logging_vars.yml playbooks/ocp-cluster-logging.yml | tee /root/cluster_logging_output.txt
