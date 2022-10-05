@@ -3,7 +3,7 @@ def call(){
         ansiColor('xterm') {
             echo ""
         }
-        env.CLFCLEANUP = true
+        env.CLFCLEANUP = "true"
         try {
             sh '''
                 
