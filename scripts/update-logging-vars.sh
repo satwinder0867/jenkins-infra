@@ -1,11 +1,11 @@
 #!/bin/bash
 
-export CHANNEL=${LOGGINGVERSION} 
-export CLUSTERLOGGING_INDEX=${CLUSTERLOGGING_INDEX} 
-export ELASTICSEARCH_INDEX=${ELASTICSEARCH_INDEX}
-export LOKIOPERATOR_INDEX=${LOKIOPERATOR_INDEX}
-export LOGCOLLECTORTYPE=${LOGCOLLECTORTYPE}
-export OCPVERSION=${OCPVERSION}
+export CHANNEL=${LoggingVersion} 
+export CLUSTERLOGGING_INDEX=${ClusterLogging_index} 
+export ELASTICSEARCH_INDEX=${Elasticsearch_index}
+export LOKIOPERATOR_INDEX=${LokiOperator_index}
+export LOGCOLLECTORTYPE=${LogCollectorType}
+export OCPVERSION=${OCPVersion}
 export CLFCLEANUP=${CLFCLEANUP}
 
 pushd ocp_ansible_validation
@@ -19,6 +19,7 @@ popd
 pushd ocp_ansible_validation/examples
 
 echo $CHANNEL
+echo ${LoggingVersion}
 echo $ELASTICSEARCH_INDEX
 sed -i 's|{CHANNEL}|'$CHANNEL'|g' ocp_cluster_logging_vars.yml
 sed -i 's|{ELASTICSEARCH_INDEX}|'$ELASTICSEARCH_INDEX'|g' ocp_cluster_logging_vars.yml
