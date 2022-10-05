@@ -89,7 +89,6 @@ pipeline {
         LOKIOPERATOR_INDEX = "${params.LokiOperator_index}"
         LOGCOLLECTORTYPE = "${params.LogCollectorType}"
         OCPVERSION = "${params.OCPVersion}"
-        CLFCLEANUP = true
         GITHUBTOKEN = credentials('SATWIN_GITHUB_TOKEN')
     }
         stages {
@@ -100,9 +99,6 @@ pipeline {
                     clusterLoggingGetKey()
                     clusterLoggingInventory()
                     clusterLoggingVars()
-                    script {
-                        env.CLFCLEANUP = true
-                    }
                     clusterLoggingExportVars()
                 }
             }
